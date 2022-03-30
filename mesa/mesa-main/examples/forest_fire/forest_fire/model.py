@@ -8,6 +8,8 @@ import csv
 
 from .agent import TreeCell
 
+step_counter = 0
+
 def shield_trees_index(model): # arrumar para nao contar a mesma arvore mais de uma vez
     """
     Se uma arvore esta "Fine", mas sua vizinha "Burned Out", entao temos
@@ -73,10 +75,18 @@ class ForestFire(Model):
         self.running = True
         self.datacollector.collect(self)
 
+    # retorna qual passo esta a simulacao
+    def get_step(self):
+        return step_counter
+
     def step(self):
         """
         Advance the model by one step.
         """
+
+        # conta os passos da simulacao
+        global step_counter
+        step_counter += 1
 
         self.schedule.step()
         # collect data
@@ -84,6 +94,9 @@ class ForestFire(Model):
 
         # Halt if no more fire or firefighters arrived
         if self.count_type(self, "On Fire") == 0 or self.count_type(self, "Firefighters") > 0:
+            # zera step_couter
+            step_counter = 0
+            
             self.running = False
             # dataframe para csv variaveis de agente
             self.datacollector.get_model_vars_dataframe().to_csv('agent_var.csv')

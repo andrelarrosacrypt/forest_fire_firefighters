@@ -44,12 +44,13 @@ class TreeCell(Agent):
         # self.model.grid.height
 
         # TODO: como conseguir a quantidade de passos da simulação "number of step"
+        # print("step = ", self.model.get_step())
 
 
         if self.condition == "On Fire":
             for neighbor in self.model.grid.neighbor_iter(self.pos):
                 # se o tempo de resposta dos bombeiros foi atingido
-                if (step_counter/5000) >= self.firefighters:
+                if self.model.get_step() >= self.firefighters:
                     self.condition = "Firefighters"
                     if neighbor.condition == "On Fire":
                         neighbor.condition = "Firefighters"
