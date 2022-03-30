@@ -13,10 +13,10 @@ A modificação consiste na adição de uma nova variável (Firefighters respons
 
 ## Como rodar
 
-No diretório forest_fire, utilize o comando:<br />
+No diretório forest_fire_firefighters, utilize o comando:<br />
     `$ mesa runserver`<br />
 Abra o browser em http://127.0.0.1:8521/.<br />
-Defina os valores das variáveis "Tree skin thickness" e "Tree density", precione "Reset" e em seguida "Start".
+Defina os valores das variáveis "Tree skin thickness", "Tree density" e "Firefighters response time", precione "Reset" e em seguida "Start".
 
 ## Arquivos CSV
 
